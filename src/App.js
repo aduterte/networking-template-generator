@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AlumniMessage from "./components/AlumniMessage"
 import './App.css';
+import RercruiterMessage from './components/RecruiterMessage';
+import YourInfo from './components/YourInfo';
 
 function App() {
+
+  const [user, setUser] = useState("")
+
+  function handleName(e){
+    const name = e.target.value
+    setUser(name)
+}
   return (
+
     <div className="App">
-      <AlumniMessage/>
+      <YourInfo user={user} func={handleName}/>
+      <AlumniMessage user={user}/>
+      <RercruiterMessage user={user}/>
     </div>
   );
 }
