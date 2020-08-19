@@ -1,9 +1,11 @@
 import React, {useState} from "react"
+import { contactAtom } from "../Atom"
+import { useRecoilValue } from "recoil"
 
 export default function RercruiterMessage(props){
 
-    const [contact, setContact] = useState(""),
-    [company, setCompany] = useState(""),
+    const contact = useRecoilValue(contactAtom),
+    // [company, setCompany] = useState(""),
     [position, setPosition] = useState(""),
     [location, setLocation] = useState(""),
     [tidbit, setTidbit] = useState(""),
@@ -16,15 +18,12 @@ export default function RercruiterMessage(props){
 
  
 
-    function handleContact(e){
-        const contact=e.target.value
-        setContact(contact)
-    }
+   
 
-    function handleCompany(e){
-        const company = e.target.value
-        setCompany(company)
-    }
+    // function handleCompany(e){
+    //     const company = e.target.value
+    //     setCompany(company)
+    // }
 
     function handlePosition(e){
         const position = e.target.value
@@ -75,8 +74,7 @@ export default function RercruiterMessage(props){
     }
 
     function handleReset(){
-        setContact("")
-        setCompany("")
+        // setCompany("")
         setPosition("")
         setLocation("")
         setTidbit("")
@@ -89,10 +87,9 @@ export default function RercruiterMessage(props){
             <h2>Recruiter Message</h2>
                 <br/>
                 <label>Enter Recruiter's E-mail </label><input type="text" value={email} onChange={handleEmail} placeholder="name@somewhere.com"/>
+{/*                
                 <br/>
-                <label>Enter Recruiter's Name </label><input type="text" value={contact} onChange={handleContact} placeholder="Enter Recruiters Name"/>
-                <br/>
-                <label>Enter Company </label><input type="text" value={company} onChange={handleCompany} placeholder="Enter Company Name"/>
+                <label>Enter Company </label><input type="text" value={company} onChange={handleCompany} placeholder="Enter Company Name"/> */}
                 <br/>
                 <label>Enter Position </label><input type="text" value={position} onChange={handlePosition} placeholder="Enter Position"/>
                 <br/>
@@ -104,14 +101,14 @@ export default function RercruiterMessage(props){
                 <br/>
                 <button onClick={handleReset}>Reset</button>
 
-            <p><b>Quick Question about {company === "" ? <span style={warning}> * Company Missing * </span> : company}</b></p>
+            <p><b>Quick Question about {contact.company === "" ? <span style={warning}> * Company Missing * </span> : contact.company}</b></p>
             <div id="copy-text">
-                <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact},</p>
+                <p>Hi {contact.firstName === "" ? <span style={warning}> * Name Missing * </span> : contact.firstName},</p>
 
-                <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {company === "" ? <span style={warning}> * Company Missing * </span> : company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
+                <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {contact.company === "" ? <span style={warning}> * Company Missing * </span> : contact.company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
 
 
-                <p>I would love to schedule a virtual coffee soon so I could learn more about what it's like to work at {company === "" ? <span style={warning}> * Company Missing * </span> : company} and ask a few questions about {question === "" ? <span style={warning}> * your question * </span> : question}. If your schedule doesn’t permit us to connect, would you be open to answering a few questions via email?</p>
+                <p>I would love to schedule a virtual coffee soon so I could learn more about what it's like to work at {contact.company === "" ? <span style={warning}> * Company Missing * </span> : contact.company} and ask a few questions about {question === "" ? <span style={warning}> * your question * </span> : question}. If your schedule doesn’t permit us to connect, would you be open to answering a few questions via email?</p>
 
                 <p>I look forward to hearing from you soon.  Thanks in advance!</p>
                 <p>Best,

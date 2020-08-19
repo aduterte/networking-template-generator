@@ -1,6 +1,7 @@
 .App {
   display: flex;
   flex-flow: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -70,4 +71,9 @@
 .templates {
   display:flex;
   justify-content: space-evenly;
+}
+
+.contact-info-container {
+  display: flex;
+  flex-direction: column;
 }

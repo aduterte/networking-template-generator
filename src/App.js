@@ -3,6 +3,7 @@ import AlumniMessage from "./components/AlumniMessage"
 import './App.css';
 import RercruiterMessage from './components/RecruiterMessage';
 import YourInfo from './components/YourInfo';
+import EmailChecker from './components/EmailChecker';
 
 function App() {
 
@@ -16,9 +17,10 @@ function App() {
 
     <div className="App">
       <YourInfo user={user} func={handleName}/>
+      <EmailChecker/>
       <div className="templates">
         <AlumniMessage user={user}/>
-      <RercruiterMessage user={user}/>
+        <RercruiterMessage user={user}/>
       </div>
       
     </div>
