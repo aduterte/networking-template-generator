@@ -39,6 +39,10 @@ export default function AlumniMessage(props){
         range = null
     }
     
+    function handleReset(){
+        setContact("")
+        setCompany("")
+    }
     return(
         <div className="alumni-message-container">
            
@@ -48,6 +52,7 @@ export default function AlumniMessage(props){
                 <br/>
                 <label>Enter Alumni's Company</label><input type="text" value={company} onChange={handleCompany} placeholder="Enter Alumni Company"/>
                 <br/>
+                <button onClick={handleReset}>Reset</button>
                 {/* <label>Enter Your Name</label><input type="text" value={user} onChange={handleUser} placeholder="Enter Your Name"/> */}
             <div id="alumni-text">
             <p><b>Greetings from a fellow Flatiron Alumni</b></p>
@@ -65,3 +70,4 @@ export default function AlumniMessage(props){
         </div>
     )
 }
+

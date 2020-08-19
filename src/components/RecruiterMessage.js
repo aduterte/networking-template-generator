@@ -74,6 +74,16 @@ export default function RercruiterMessage(props){
         range = null
     }
 
+    function handleReset(){
+        setContact("")
+        setCompany("")
+        setPosition("")
+        setLocation("")
+        setTidbit("")
+        setQuestion("")
+        setEmail("")
+    }
+
     return(
         <div className="recruiter-message-container">
             <h2>Recruiter Message</h2>
@@ -91,8 +101,9 @@ export default function RercruiterMessage(props){
                 <label>Enter Company Tidbit </label><input type="text" value={tidbit} onChange={handleTidbit} placeholder="Enter Tidbit"/>
                 <br/>
                 <label>Enter Question</label><input type="text" value={question} onChange={handleQuestion} placeholder="Enter what you would like to speak about, e.g. keys to success"/>
-                
-           
+                <br/>
+                <button onClick={handleReset}>Reset</button>
+
             <p><b>Quick Question about {company === "" ? <span style={warning}> * Company Missing * </span> : company}</b></p>
             <div id="copy-text">
                 <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact}</p>
