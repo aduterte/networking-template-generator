@@ -54,22 +54,24 @@ export default function RercruiterMessage(props){
     function handleCopy(){
         console.log("im hit")
         
-        const bodyText = document.getElementById("recruiter-body"),
+        let bodyText = document.getElementById("copy-text"),
             selection = window.getSelection(),
+            range = null
+
+
             range = document.createRange()
-
-
-
         range.selectNode(bodyText)
+        selection.removeAllRanges()
         selection.addRange(range)
         
-        // debugger
+       
         document.execCommand('copy')
-        document.execCommand('copy')
+        
         // debugger
         
         selection.removeAllRanges()
         
+        range = null
     }
 
     return(
@@ -92,7 +94,7 @@ export default function RercruiterMessage(props){
                 
            
             <p><b>Quick Question about {company === "" ? <span style={warning}> * Company Missing * </span> : company}</b></p>
-            <div id="recruiter-body">
+            <div id="copy-text">
                 <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact}</p>
 
                 <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {company === "" ? <span style={warning}> * Company Missing * </span> : company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
@@ -105,8 +107,12 @@ export default function RercruiterMessage(props){
                 <br/>
                 {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user}</p>
             </div>
-            <button onClick={handleCopy}>TEST</button>
-            <a href={`mailto:${email}?subject=Quick Question about ${company}&html-body=${message}`} target="_blank" rel="noopener noreferrer">E-mail it</a>
+            <div>
+                <button onClick={handleCopy}>Click to Copy Message</button>
+            </div>
+
+            
+            {/* <a href={`mailto:${email}?subject=Quick Question about ${company}&html-body=${message}`} target="_blank" rel="noopener noreferrer">E-mail it</a> */}
             
         </div>
     )
