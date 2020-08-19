@@ -51,6 +51,26 @@ export default function RercruiterMessage(props){
         setEmail(email)
     }
 
+    function handleCopy(){
+        console.log("im hit")
+        
+        const bodyText = document.getElementById("recruiter-body"),
+            selection = window.getSelection(),
+            range = document.createRange()
+
+
+
+        range.selectNode(bodyText)
+        selection.addRange(range)
+        
+        // debugger
+        document.execCommand('copy')
+        document.execCommand('copy')
+        // debugger
+        
+        selection.removeAllRanges()
+        
+    }
 
     return(
         <div className="recruiter-message-container">
@@ -72,18 +92,20 @@ export default function RercruiterMessage(props){
                 
            
             <p><b>Quick Question about {company === "" ? <span style={warning}> * Company Missing * </span> : company}</b></p>
-            <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact}</p>
+            <div id="recruiter-body">
+                <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact}</p>
 
-            <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {company === "" ? <span style={warning}> * Company Missing * </span> : company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
+                <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {company === "" ? <span style={warning}> * Company Missing * </span> : company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
 
 
-            <p>I would love to schedule a virtual coffee soon so I could learn more about what it's like to work at {company === "" ? <span style={warning}> * Company Missing * </span> : company} and ask a few questions about {question === "" ? <span style={warning}> * your question * </span> : question}. If your schedule doesn’t permit us to connect, would you be open to answering a few questions via email?</p>
+                <p>I would love to schedule a virtual coffee soon so I could learn more about what it's like to work at {company === "" ? <span style={warning}> * Company Missing * </span> : company} and ask a few questions about {question === "" ? <span style={warning}> * your question * </span> : question}. If your schedule doesn’t permit us to connect, would you be open to answering a few questions via email?</p>
 
-            <p>I look forward to hearing from you soon.  Thanks in advance!</p>
-            <p>Best,
-            <br/>
-            {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user}</p>
-
+                <p>I look forward to hearing from you soon.  Thanks in advance!</p>
+                <p>Best,
+                <br/>
+                {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user}</p>
+            </div>
+            <button onClick={handleCopy}>TEST</button>
             <a href={`mailto:${email}?subject=Quick Question about ${company}&html-body=${message}`} target="_blank" rel="noopener noreferrer">E-mail it</a>
             
         </div>
