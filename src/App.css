@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  justify-content: flex-start;
+  flex-flow: column;
 }
 
 .App-logo {
@@ -48,4 +48,26 @@
   width: 500px;
   text-align: left;
   margin-left: 50px;
+}
+
+.your-info {
+  height: 50px;
+  background-color: rgb(31, 31, 111);
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.your-info label {
+  margin: 5px 5px;
+}
+
+.your-info input {
+  height: 20px;
+}
+
+.templates {
+  display:flex;
+  justify-content: space-evenly;
 }

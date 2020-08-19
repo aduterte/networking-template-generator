@@ -16,8 +16,11 @@ function App() {
 
     <div className="App">
       <YourInfo user={user} func={handleName}/>
-      <AlumniMessage user={user}/>
+      <div className="templates">
+        <AlumniMessage user={user}/>
       <RercruiterMessage user={user}/>
+      </div>
+      
     </div>
   );
 }

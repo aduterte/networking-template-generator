@@ -4,7 +4,6 @@ export default function RercruiterMessage(props){
 
     const [contact, setContact] = useState(""),
     [company, setCompany] = useState(""),
-    [user, setUser] = useState(""),
     [position, setPosition] = useState(""),
     [location, setLocation] = useState(""),
     [tidbit, setTidbit] = useState(""),
