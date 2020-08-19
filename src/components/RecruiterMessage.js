@@ -106,7 +106,7 @@ export default function RercruiterMessage(props){
 
             <p><b>Quick Question about {company === "" ? <span style={warning}> * Company Missing * </span> : company}</b></p>
             <div id="copy-text">
-                <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact}</p>
+                <p>Hi {contact === "" ? <span style={warning}> * Name Missing * </span> : contact},</p>
 
                 <p>I hope you are doing well.  My name is {props.user === "" ? <span style={warning}> * Your Name Missing * </span> : props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the {position === "" ? <span style={warning}> * Position Missing * </span> : position} position in {location === "" ? <span style={warning}> * location Missing * </span> : location} and after learning more about {company === "" ? <span style={warning}> * Company Missing * </span> : company}, I was very intrigued by {tidbit === "" ? <span style={warning}> * what caught your eye * </span> : tidbit}.</p>
 
