@@ -5,7 +5,9 @@ import {useRecoilState} from "recoil"
 export default function EmailChecker(){
 
     const [contact, setContact] = useRecoilState(contactAtom),
-        [domain, setDomain] = useState("")
+        [domain, setDomain] = useState(""),
+        [emailStatus, setEmailStatus] = useState(false),
+        [search, setSearch] = useState(false)
 
     const handleFirstName = (e) => {
         const firstName = e.target.value
@@ -29,6 +31,102 @@ export default function EmailChecker(){
         setDomain(domain)
     }
 
+    const handleFindEmail = () =>{
+        setSearch(true)
+        const name = `${contact.firstName.toLowerCase()}${contact.lastName.toLowerCase()}`
+        // debugger
+        fetch(`https://verimail.p.rapidapi.com/v3/verify?email=${name}@${domain}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "verimail.p.rapidapi.com",
+                "x-rapidapi-key": "44574ae854mshd988c9424075896p1df504jsn70eef846d546"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.deliverable === true){
+                setContact({...contact, email: data.email})
+                setEmailStatus(true)
+                console.log(contact.email)
+                // debugger
+            } else {
+                debugger
+                emailFLastname()
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+    }
+
+    const emailFLastname = () => {
+        const first = contact.firstName.charAt(0),
+            last = contact.lastName,
+            name = `${first.toLowerCase()}${last.toLowerCase()}`
+        debugger
+        fetch(`https://verimail.p.rapidapi.com/v3/verify?email=${name}@${domain}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "verimail.p.rapidapi.com",
+                "x-rapidapi-key": "44574ae854mshd988c9424075896p1df504jsn70eef846d546"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.deliverable === true){
+                setContact({...contact, email: data.email})
+                setEmailStatus(true)
+                console.log(contact.email)
+                
+            } else {
+                emailFirst()
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    const emailFirst = () => {
+        const name = contact.firstName.toLowerCase()
+
+        fetch(`https://verimail.p.rapidapi.com/v3/verify?email=${name}@${domain}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "verimail.p.rapidapi.com",
+                "x-rapidapi-key": "44574ae854mshd988c9424075896p1df504jsn70eef846d546"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.deliverable === true){
+                setContact({...contact, email: data.email})
+                setEmailStatus(true)
+                console.log(contact.email)
+                
+            } else {
+                console.log("not found")
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    
+
+    function renderEmail(){
+        if (search === true) {
+            if (emailStatus === true) {
+                return <div>{contact.email}</div>
+            } else {
+                return <div>"Email Not Found"</div>
+            }
+        }
+    }
+
+
     return(
         <div>
             <h2>Contact Info</h2>
@@ -41,8 +139,9 @@ export default function EmailChecker(){
                     <input type="text" value={contact.lastName} onChange={handleLastName} placeholder="Last Name"/>
                     @
                     <input type="text" value={domain} onChange={handleDomain} placeholder="domain.com"/>
-                    <button>Find email</button>
+                    <button onClick={handleFindEmail}>Find email</button>
                 </div>
+                {renderEmail()}
                 <div>
                     Enter Company Name<input type="text" value={contact.company} onChange={handleCompany} placeholder="Enter Company Name"/>
                 </div>
