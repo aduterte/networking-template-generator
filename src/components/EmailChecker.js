@@ -31,6 +31,11 @@ export default function EmailChecker(){
         setDomain(domain)
     }
 
+    const handleEmail = (e) => {
+        const email = e.target.value
+        setContact({...contact, email: email})
+    }
+
     const handleFindEmail = () =>{
         setSearch(true)
         const name = `${contact.firstName.toLowerCase()}${contact.lastName.toLowerCase()}`
@@ -131,17 +136,23 @@ export default function EmailChecker(){
         <div>
             <h2>Contact Info</h2>
             <div className="contact-info-container">
-                <div>
-                    Email Finder
+                <div style={{backgroundColor: "lightblue"}}>
+                    Email Finder (BETA TESTING)
                 </div>
-                <div>
+                <div style={{backgroundColor: "lightblue"}}>
                     <input type="text" value={contact.firstName} onChange={handleFirstName} placeholder="First Name"/>
                     <input type="text" value={contact.lastName} onChange={handleLastName} placeholder="Last Name"/>
                     @
                     <input type="text" value={domain} onChange={handleDomain} placeholder="domain.com"/>
                     <button onClick={handleFindEmail}>Find email</button>
+                    <br/>
                 </div>
                 {renderEmail()}
+                <div>
+                    Please use <a href="https://cultivatedculture.com/mailscoop/" rel="noopener noreferrer" target="_blank" >Mail Scoop</a> to find emails for now
+                    <br/>
+                    <label>Enter Email from Mailscoop </label><input type="text" onChange={handleEmail}value={contact.email} placeholder="Contact email"/>
+                </div>
                 <div>
                     Enter Company Name<input type="text" value={contact.company} onChange={handleCompany} placeholder="Enter Company Name"/>
                 </div>
