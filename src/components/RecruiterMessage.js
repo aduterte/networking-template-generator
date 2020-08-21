@@ -10,7 +10,6 @@ export default function RercruiterMessage(props){
     [location, setLocation] = useState(""),
     [tidbit, setTidbit] = useState(""),
     [question, setQuestion] = useState(""),
-    [email, setEmail] = useState(""),
     warning = {color:"red",fontWeight:"bold"}
 
     // const message = `Hi ${contact},%0D%0AI hope you are doing well. My name is ${props.user} and I am a recent graduate of Flatiron School's Software Engineering Program.  I came across the ${position} position in ${location} and after learning more about ${company}, I was very intrigued by ${tidbit}.%0D%0A%0D%0AI would love to schedule a virtual coffee soon so I could learn more about what it's like to work at ${company} and ask a few questions about ${question}. If your schedule doesn’t permit us to connect, would you be open to answering a few questions via email?%0D%0A%0D%0AI look forward to hearing from you soon. Thanks in advance!%0D%0A%0D%0ABest,%0D%0A${props.user}<img src="https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/linkedin-icon-2x.png"/>
@@ -45,10 +44,7 @@ export default function RercruiterMessage(props){
         setQuestion(question)
     }
 
-    function handleEmail(e){
-        const email = e.target.value
-        setEmail(email)
-    }
+    
 
     function handleCopy(){
         console.log("im hit")
@@ -79,14 +75,13 @@ export default function RercruiterMessage(props){
         setLocation("")
         setTidbit("")
         setQuestion("")
-        setEmail("")
+        
     }
 
     return(
         <div className="recruiter-message-container">
             <h2>Recruiter Message</h2>
-                <br/>
-                <label>Enter Recruiter's E-mail </label><input type="text" value={email} onChange={handleEmail} placeholder="name@somewhere.com"/>
+                
 {/*                
                 <br/>
                 <label>Enter Company </label><input type="text" value={company} onChange={handleCompany} placeholder="Enter Company Name"/> */}

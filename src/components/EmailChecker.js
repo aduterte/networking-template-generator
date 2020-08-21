@@ -136,12 +136,13 @@ export default function EmailChecker(){
         <div>
             <h2>Contact Info</h2>
             <div className="contact-info-container">
+                <input type="text" value={contact.firstName} onChange={handleFirstName} placeholder="First Name"/>
+                <input type="text" value={contact.lastName} onChange={handleLastName} placeholder="Last Name"/>
                 <div style={{backgroundColor: "lightblue"}}>
                     Email Finder (BETA TESTING)
                 </div>
                 <div style={{backgroundColor: "lightblue"}}>
-                    <input type="text" value={contact.firstName} onChange={handleFirstName} placeholder="First Name"/>
-                    <input type="text" value={contact.lastName} onChange={handleLastName} placeholder="Last Name"/>
+                    {contact.firstName} {contact.lastName}
                     @
                     <input type="text" value={domain} onChange={handleDomain} placeholder="domain.com"/>
                     <button onClick={handleFindEmail}>Find email</button>
