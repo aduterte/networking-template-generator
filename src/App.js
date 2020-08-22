@@ -25,8 +25,9 @@ function App() {
       <div className="left-nav">
         <YourInfo user={user} func={handleName}/>
         <EmailChecker/>
+        <br/>
         <input type="radio" value="alumni" name="template" onChange={handleTemplate}/>
-        <label>Alumni Template</label>
+        <label>Alumni Template</label><br/>
         <input type="radio" value="recruiter" name="template" onChange={handleTemplate}/>
         <label>Recruiter Template</label>
         
